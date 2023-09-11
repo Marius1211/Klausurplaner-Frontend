@@ -6,21 +6,22 @@ import './Login.css';
 
 function Login(props) {
     return (
-            <Container id='login-panel'>
-            <Grid container direction={'column'} spacing={2}>
-                <Grid>
+            <div id='login-panel'>
+            <Grid container direction={'column'} spacing={2} justifyContent="center" alignItems="left">
+                <Grid xs={14}>
                     <TextField className="input-login" id="input-email" label="Email-Adresse" variant='outlined'/>
+                    <Button id="toggle-password">show</Button>
                 </Grid>
-                <Grid>
+                <Grid xs={12}>
                     <TextField className="input-login" id="input-password" label="Email-Adresse" variant='outlined'/>
-                </Grid>
-                <Grid xs={1}>
-                    <Button variant='outlined'>Login</Button>
+                </Grid >
+                <Grid>
+                    <Button id="button-login" variant='outlined'>Login</Button>
                 </Grid>
             </Grid>
 
 
-            </Container>
+            </div>
     );
 }
 
