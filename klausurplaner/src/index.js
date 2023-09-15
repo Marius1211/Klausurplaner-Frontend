@@ -5,6 +5,7 @@ import App from './App';
 import Login from './Login';
 import AddKlausur from './AddKlausur';
 import ClassOverview from './ClassOverview';
+import Calendar from './Calendar'
 import reportWebVitals from './reportWebVitals';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';

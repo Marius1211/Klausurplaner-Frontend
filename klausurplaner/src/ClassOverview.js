@@ -59,6 +59,7 @@ function ClassOverview() {
 
 
     return (
+        
         <div id="overview">
             <h1>Klassenverwaltung</h1>
             <div>
