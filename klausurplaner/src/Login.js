@@ -5,9 +5,9 @@ import './Login.css';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 
-function Login(props) {
+function Login() {
     return (
-            <div id='login-panel'>
+        <div id='login-panel'>
             <Grid container direction={'column'} spacing={2} justifyContent="center" alignItems="left">
                 <Grid xs={14}>
                     <TextField className="input-login" id="input-email" label="Email-Adresse" variant='outlined'/>
@@ -20,9 +20,7 @@ function Login(props) {
                     <Button id="button-login" variant='outlined'>Login</Button>
                 </Grid>
             </Grid>
-
-
-            </div>
+        </div>
     );
 }
 
