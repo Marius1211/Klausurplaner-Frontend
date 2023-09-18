@@ -14,6 +14,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import './Calendar.css';
+import PersistentDrawerLeft from './DrawerSidebar';
 
 function createData(stunde, montag, dienstag, mittwoch, donnerstag, freitag) {
   return { stunde, montag, dienstag, mittwoch, donnerstag, freitag };
@@ -35,27 +36,7 @@ const rows = [
 function Calendar() {
   return (
     <div id="calendarOverview">
-      <Box sx={{ flexGrow: 1 }}>
-                <AppBar className="topbar">
-                    <Toolbar>
-                    <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                            onClick={() => {
-                              alert('clicked');
-                            }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Kalender Übersicht
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </Box>
+      <PersistentDrawerLeft header='Kalender Übersicht'/>
       <div id="calendarview">
       <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

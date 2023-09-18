@@ -9,7 +9,6 @@
 
 #calendarview {
     display: flex;
-    padding-top: 100px;
     margin: auto;
     width: 70%;
 }
