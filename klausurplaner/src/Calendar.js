@@ -36,39 +36,39 @@ const rows = [
 function Calendar() {
   return (
     <div id="calendarOverview">
-      <PersistentDrawerLeft header='Kalender Übersicht'/>
+      <PersistentDrawerLeft header='Kalender Übersicht' />
       <div id="calendarview">
-      <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow sx={{ border: 1}}>
-            <TableCell sx={{ border: 1}}>Stunde</TableCell>
-            <TableCell align="right" sx={{ border: 1}}>Montag</TableCell>
-            <TableCell align="right" sx={{ border: 1}}>Dienstag</TableCell>
-            <TableCell align="right" sx={{ border: 1}}>Mittwoch</TableCell>
-            <TableCell align="right" sx={{ border: 1}}>Donnerstag</TableCell>
-            <TableCell align="right" sx={{ border: 1}}>Freitag</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.stunde}
-              sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
-            >
-              <TableCell component="th" scope="row" sx={{ border: 1}}>
-                {row.stunde}
-              </TableCell>
-              <TableCell align="right" sx={{ border: 1}}>{row.montag}</TableCell>
-              <TableCell align="right" sx={{ border: 1}}>{row.dienstag}</TableCell>
-              <TableCell align="right" sx={{ border: 1}}>{row.mittwoch}</TableCell>
-              <TableCell align="right" sx={{ border: 1}}>{row.donnerstag}</TableCell>
-              <TableCell align="right" sx={{ border: 1}}>{row.freitag}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow sx={{ border: 1 }}>
+                <TableCell sx={{ border: 1 }}>Stunde</TableCell>
+                <TableCell align="right" sx={{ border: 1 }}>Montag</TableCell>
+                <TableCell align="right" sx={{ border: 1 }}>Dienstag</TableCell>
+                <TableCell align="right" sx={{ border: 1 }}>Mittwoch</TableCell>
+                <TableCell align="right" sx={{ border: 1 }}>Donnerstag</TableCell>
+                <TableCell align="right" sx={{ border: 1 }}>Freitag</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.stunde}
+                  sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
+                >
+                  <TableCell component="th" scope="row" sx={{ border: 1 }}>
+                    {row.stunde}
+                  </TableCell>
+                  <TableCell align="right" sx={{ border: 1 }}>{row.montag}</TableCell>
+                  <TableCell align="right" sx={{ border: 1 }}>{row.dienstag}</TableCell>
+                  <TableCell align="right" sx={{ border: 1 }}>{row.mittwoch}</TableCell>
+                  <TableCell align="right" sx={{ border: 1 }}>{row.donnerstag}</TableCell>
+                  <TableCell align="right" sx={{ border: 1 }}>{row.freitag}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
       <Divider orientation="vertical" flexItem />
       <div>
