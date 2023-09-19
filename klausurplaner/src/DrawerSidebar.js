@@ -21,6 +21,7 @@ import AlarmIcon from '@mui/icons-material/Alarm';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import EditIcon from '@mui/icons-material/Edit';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import SchoolIcon from '@mui/icons-material/School';
 
 const drawerWidth = 240;
 
@@ -167,6 +168,19 @@ export default function PersistentDrawerLeft(header) {
                             <ListItemButton>
                                 <ListItemIcon>
                                     <EditIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+                <Divider />
+                <List>
+                    {['Klassen verwalten'].map((text) => (
+                        <ListItem key={text} disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <SchoolIcon/>
                                 </ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItemButton>
