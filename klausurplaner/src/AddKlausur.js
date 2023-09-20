@@ -5,11 +5,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './AddKlausur.css';
+import DrawerSidebar from './DrawerSidebar';
 
 function AddKlausur() {
     return (
         <div id="add-menue">
-            <h2>Neue Klausur hinzufüegen/bearbeiten</h2>
+            <DrawerSidebar header="Klausur hinzufügen/bearbeiten"/>
             <Grid container direction={'column'} spacing={2} justifyContent="center" alignItems="left">
                 <Grid item xs={30}>
                     <TextField className="input-add" id="input-class" label="Klasse" variant='outlined'/>
