@@ -14,14 +14,16 @@ const columns = [
     { id: 'datum', label: 'Datum', minWidth: 100 },
     { id: 'fach', label: 'Fach', minWidth: 100 },
     { id: 'thema', label: 'Thema', minWidth: 100 },
-    { id: 'sontiges', label: 'Sonstiges', minWidth: 100 },
+    { id: 'sonstiges', label: 'Sonstiges', minWidth: 100 },
 ];
 
 function createData(datum, fach, thema, sonstiges) {
     return { datum, fach, thema, sonstiges };
 }
 
-const rows = [];
+const rows = [
+  createData("25.09.2023", "Lernfeld 12", "Einladung Betrieb", "Muss geschrieben werden!"),
+];
 
 function ComingExams() {
     const [page, setPage] = React.useState(0);
