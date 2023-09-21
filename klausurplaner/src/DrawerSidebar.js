@@ -22,6 +22,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import EditIcon from '@mui/icons-material/Edit';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import SchoolIcon from '@mui/icons-material/School';
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -125,7 +126,9 @@ export default function PersistentDrawerLeft(header) {
                 <Divider />
                 <List>
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={(event) => {
+                            window.location.href='/calendar';
+                        }}>
                             <ListItemIcon>
                                 <CalendarMonthIcon />
                             </ListItemIcon>
@@ -134,7 +137,9 @@ export default function PersistentDrawerLeft(header) {
                     </ListItem>
                     <Divider />
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={(event) => {
+                            window.location.href='/comingexams';
+                        }}>
                             <ListItemIcon>
                                 <AlarmIcon />
                             </ListItemIcon>
@@ -143,7 +148,9 @@ export default function PersistentDrawerLeft(header) {
                     </ListItem>
                     <Divider />
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={(event) => {
+                            window.location.href='/addklausur';
+                        }}>
                             <ListItemIcon>
                                 <AddBoxIcon />
                             </ListItemIcon>
