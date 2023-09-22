@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
-import { TextField, Container, Button, Checkbox, Icon } from '@mui/material';
+import { TextField, Button, Checkbox } from '@mui/material';
 import './Login.css';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import DrawerSidebar from './DrawerSidebar';
