@@ -5,20 +5,22 @@ import { Table, TableCell, TableHead, TableRow, TableBody, TableContainer, Paper
 
 function ExamComponent (props) {
 
-
+    //Url von den Daten aus dem Frontend
     const EXAMS_REST_API_URL = 'http://localhost:8080/exams';
 
+    //useState Hook für ExamsArray
+    const [exams, setExams] = useState([]);
 
+    //Zieht sich die Daten von der URL und speicher diese in den aktuellen State
     const getExams = () => {
         axios.get(EXAMS_REST_API_URL,).then(response => setExams(response.data));
     };
 
-    const [exams, setExams] = useState([]);
-
+    /*
     useEffect(() => {
         getExams();
     },[]);
-    
+    */
         
         return (
             <div>
@@ -38,6 +40,7 @@ function ExamComponent (props) {
                             {exams.map(
                                 exams =>
                                 <TableRow>
+                                    {/* Hier werden die Daten aus dem Backend genutzt */}
                                     <TableCell key={"0"}>{exams.id}</TableCell>
                                     <TableCell key={"2"}>{exams.classname}</TableCell>
                                     <TableCell key={"3"}>{exams.subject}</TableCell>
