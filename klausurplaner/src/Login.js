@@ -40,7 +40,7 @@ const login = function(event) {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
+        if (data.equals("Richtiges Passwort")) {
             window.location.href='/calendar';
         } else {
             document.getElementById("input-password").value = "";
