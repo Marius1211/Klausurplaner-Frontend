@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Component, useEffect, useState } from 'react';
 import './ComingExams.css'
 import DrawerSidebar from './DrawerSidebar'
 import Paper from '@mui/material/Paper';
@@ -9,90 +10,64 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import axios from 'axios';
 
-const columns = [
-    { id: 'datum', label: 'Datum', minWidth: 100 },
-    { id: 'fach', label: 'Fach', minWidth: 100 },
-    { id: 'thema', label: 'Thema', minWidth: 100 },
-    { id: 'sonstiges', label: 'Sonstiges', minWidth: 100 },
-];
+function ComingExams(props) {
 
-function createData(datum, fach, thema, sonstiges) {
-    return { datum, fach, thema, sonstiges };
-}
+  //Url von den Daten aus dem Frontend
+const EXAMS_REST_API_URL = 'http://localhost:8080/exams';
+//useState Hook für ExamsArray
+const [exams, setExams] = useState([]);
 
-const rows = [
-  createData("25.09.2023", "Lernfeld 12", "Einladung Betrieb", "Muss geschrieben werden!"),
-];
+//Zieht sich die Daten von der URL und speicher diese in den aktuellen State
+const getExams = () => {
+  axios.get(EXAMS_REST_API_URL,)
+    .then(response => {
+      console.log('API response:', response.data);
+      setExams(response.data);
+    })
+    .catch(error => console.error('Error fetching exams:', error));
+};
 
-function ComingExams() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+    useEffect(() => {
+        getExams();
+    },[]);
+    
 
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
-
-    return (
-        <div>
-          <DrawerSidebar header="Anstehende Klausuren" />
-          <div id="examview">
-          <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
+  return (
+    <div>
+      <DrawerSidebar header="Anstehende Klausuren" />
+      <div id="examview">
+        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow sx={{ border: 1 }}>
+                  <TableCell key={"1"} sx={{ border: 1 }}>ExamId</TableCell>
+                  <TableCell key={"2"} align="right" sx={{ border: 1 }}>Stunde</TableCell>
+                  <TableCell key={"3"} align="right" sx={{ border: 1 }}>Fach</TableCell>
+                  <TableCell key={"4"} align="right" sx={{ border: 1 }}>Thema</TableCell>
+                  <TableCell key={"5"}  align="right" sx={{ border: 1 }}>Sonstiges</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {exams.map(exam => (
+                  <TableRow>
+                    <TableCell key={"6"} >{exam.id}</TableCell>
+                    <TableCell key={"7"} >{exam.stunde}</TableCell>
+                    <TableCell key={"8"} >{exam.subject}</TableCell>
+                    <TableCell key={"9"} >{exam.topic}</TableCell>
+                    <TableCell key={"0"} >{exam.sonstiges}</TableCell>
                   </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
-          </div>
-        </div>
-    );
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      </div>
+    </div>
+  );
 }
 
 export default ComingExams;

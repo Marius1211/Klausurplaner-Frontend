@@ -13,9 +13,7 @@ import ExamComponent from './components/ExamComponent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {//<App/>
-    <ExamComponent/>
-    }
+    <App/>
   </React.StrictMode>
 );
 
