@@ -29,9 +29,9 @@ function Login() {
 const login = function(event) {
     event.preventDefault();
     const email = document.getElementById("input-email").value;
-    const password = document.getElementById("input-password").value;
+    const password = document.getElementById("input-password").value
 
-    fetch("login", {
+    fetch("http://localhost:3000/kp/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
