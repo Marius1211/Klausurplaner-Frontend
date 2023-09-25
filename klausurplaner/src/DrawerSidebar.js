@@ -22,7 +22,6 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import EditIcon from '@mui/icons-material/Edit';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import SchoolIcon from '@mui/icons-material/School';
-import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -79,7 +78,7 @@ export default function PersistentDrawerLeft(header) {
         setOpen(true);
     };
 
-    var header = JSON.stringify(header);
+    header = JSON.stringify(header);
     var headerResult = header.slice(11, header.length - 2);
 
     const handleDrawerClose = () => {
@@ -159,7 +158,9 @@ export default function PersistentDrawerLeft(header) {
                     </ListItem>
                     <Divider />
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={(event) => {
+                            window.location.href='/addklausur';
+                        }}>
                             <ListItemIcon>
                                 <EditIcon />
                             </ListItemIcon>
@@ -168,7 +169,9 @@ export default function PersistentDrawerLeft(header) {
                     </ListItem>
                     <Divider />
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={(event) => {
+                            window.location.href='/classoverview';
+                        }}>
                             <ListItemIcon>
                                 <SchoolIcon />
                             </ListItemIcon>
