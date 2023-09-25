@@ -21,7 +21,7 @@ function createData(stunde, montag, dienstag, mittwoch, donnerstag, freitag) {
 }
 
 const rows = [
-  createData('1. 8:00 - 8:45', '-', '-', '-', '-', '-'),
+  createData('1. 8:00 - 8:45', '', '', '', '', ''),
   createData('2. 8:45 - 9:30', '', '', '', '', ''),
   createData('3. 9:45 - 10:30', '', '', '', '', ''),
   createData('4. 10:30 - 11:15', '', '', '', '', ''),
