@@ -5,6 +5,7 @@ import './Login.css';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import DrawerSidebar from './DrawerSidebar';
 
+const backendURL = "http://localhost:8080";
 
 function Login() {
     return (
@@ -31,7 +32,7 @@ const login = function(event) {
     const email = document.getElementById("input-email").value;
     const password = document.getElementById("input-password").value
 
-    fetch("http://localhost:3000/kp/login", {
+    fetch("${backendURL}/kp/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
