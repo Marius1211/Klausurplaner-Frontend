@@ -7,116 +7,53 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import PersistentDrawerLeft from './DrawerSidebar';
-
-const columns = [
-    { id: 'className', label: 'Klasse', minWidth: 100 },
-    { id: 'students', label: 'Anzahl Schüler', minWidth: 100 },
-    { id: 'classroom', label: 'Klassenraum', minWidth: 100 },
-];
-
-function createData(className, students, classroom) {
-    return { className, students, classroom };
-}
-
-const rows = [
-    createData('12ITa', 20, 'C210'),
-    createData('12ITb', 15, 'C209'),
-    createData('12ITc', 25, 'C207'),
-    createData('12ITa', 20, 'C210'),
-    createData('12ITb', 15, 'C209'),
-    createData('12ITc', 25, 'C207'),
-    createData('12ITa', 20, 'C210'),
-    createData('12ITb', 15, 'C209'),
-    createData('12ITc', 25, 'C207'),
-    createData('12ITa', 20, 'C210'),
-    createData('12ITb', 15, 'C209'),
-    createData('12ITc', 25, 'C207'),
-    createData('12ITa', 20, 'C210'),
-    createData('12ITb', 15, 'C209'),
-    createData('12ITc', 25, 'C207'),
-    createData('12ITa', 20, 'C210'),
-    createData('12ITb', 15, 'C209'),
-    createData('12ITc', 25, 'C207'),
-    createData('12ITa', 20, 'C210'),
-    createData('12ITb', 15, 'C209'),
-    createData('12ITc', 25, 'C207'),
-];
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function ClassOverview() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+        const EXAMS_REST_API_URL = 'http://localhost:8080/klasse';
+    const [klassen, setKlassen] = useState([]);
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
+    const getKlassen = () => {
+        axios.get(EXAMS_REST_API_URL)
+            .then(response => {
+                console.log('API response:', response.data);
+                setKlassen(response.data);
+            })
+            .catch(error => console.error('Error fetching exams:', error));
     };
 
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
-
+    useEffect(() => {
+        getKlassen();
+    }, []);
 
     return (
-
         <div id="overview">
-            <PersistentDrawerLeft header='Klassenverwaltung'/>
+            <PersistentDrawerLeft header='Klassenverwaltung' />
             <div>
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                     <TableContainer sx={{ maxHeight: 440 }}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <TableRow>
-                                    {columns.map((column) => (
-                                        <TableCell
-                                            key={column.id}
-                                            align={column.align}
-                                            style={{ minWidth: column.minWidth }}
-                                        >
-                                            {column.label}
-                                        </TableCell>
-                                    ))}
+                                    <TableCell sx={{ border: 1 }}>Klasse</TableCell>
+                                    <TableCell align="right" sx={{ border: 1 }}>Anzahl Schüler</TableCell>
+                                    <TableCell align="right" sx={{ border: 1 }}>Klassenraum</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows
-                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .map((row) => {
-                                        return (
-                                            <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                                {columns.map((column) => {
-                                                    const value = row[column.id];
-                                                    return (
-                                                        <TableCell key={column.id} align={column.align}>
-                                                            {column.format && typeof value === 'number'
-                                                                ? column.format(value)
-                                                                : value}
-                                                        </TableCell>
-                                                    );
-                                                })}
-                                            </TableRow>
-                                        );
-                                    })}
+                                {klassen.map(klasse => (
+                                    <TableRow>
+                                        <TableCell sx={{ border: 1 }}>{klasse.klassenbezeichnung}</TableCell>
+                                        <TableCell sx={{ border: 1 }}>{klasse.anzSchueler}</TableCell>
+                                        <TableCell sx={{ border: 1 }}>{klasse.klassenraum}</TableCell>
+                                    </TableRow>
+                                ))}
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
-                        component="div"
-                        count={rows.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                    />
                 </Paper>
             </div>
             <div className="button-container">
