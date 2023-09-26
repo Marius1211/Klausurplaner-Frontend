@@ -158,7 +158,9 @@ export default function PersistentDrawerLeft(header) {
                     </ListItem>
                     <Divider />
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={(event) => {
+                            window.location.href='/addklausur';
+                        }}>
                             <ListItemIcon>
                                 <EditIcon />
                             </ListItemIcon>
@@ -167,7 +169,9 @@ export default function PersistentDrawerLeft(header) {
                     </ListItem>
                     <Divider />
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={(event) => {
+                            window.location.href='/classoverview';
+                        }}>
                             <ListItemIcon>
                                 <SchoolIcon />
                             </ListItemIcon>
