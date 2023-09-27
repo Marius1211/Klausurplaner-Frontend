@@ -9,25 +9,60 @@ import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import './Calendar.css';
 import PersistentDrawerLeft from './DrawerSidebar';
-
-function createData(stunde, montag, dienstag, mittwoch, donnerstag, freitag) {
-  return { stunde, montag, dienstag, mittwoch, donnerstag, freitag };
-}
-
-const rows = [
-  createData('1. 8:00 - 8:45', '', '', '', '', ''),
-  createData('2. 8:45 - 9:30', '', '', '', '', ''),
-  createData('3. 9:45 - 10:30', '', '', '', '', ''),
-  createData('4. 10:30 - 11:15', '', '', '', '', ''),
-  createData('5. 11:30 - 12:15', '', '', '', '', ''),
-  createData('6. 12:15 - 13:00', '', '', '', '', ''),
-  createData('7. 13:30 - 14:15', '', '', '', '', ''),
-  createData('8. 14:15 - 15:00', '', '', '', '', ''),
-  createData('9. 15:10 - 15:55', '', '', '', '', ''),
-  createData('10. 15:55 - 16:40', '', '', '', '', ''),
-];
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Calendar() {
+  const EXAMS_REST_API_URL = 'http://localhost:8080/calendar';
+  const [calendarEintrag, setCalendarEintrag] = useState([]);
+
+  const getCalendarEintrag = () => {
+    axios.get(EXAMS_REST_API_URL)
+      .then(response => {
+        console.log('API response:', response.data);
+        setCalendarEintrag(response.data);
+      })
+      .catch(error => console.error('Error fetching exams:', error));
+  };
+
+  useEffect(() => {
+    getCalendarEintrag();
+  }, []);
+
+  const getDayColumn = (day) => {
+    switch (day) {
+      case 'Montag':
+        return 1;
+      case 'Dienstag':
+        return 2;
+      case 'Mittwoch':
+        return 3;
+      case 'Donnerstag':
+        return 4;
+      case 'Freitag':
+        return 5;
+      default:
+        return 1; // Default to Montag if day is not recognized
+    }
+  };
+
+  const renderTableCells = (entry) => {
+    const dayColumn = getDayColumn(entry.tag);
+    const cells = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i === dayColumn) {
+        cells.push(
+          <TableCell key={i} sx={{ border: 1 }}>
+            {entry.klausurArt}
+          </TableCell>
+        );
+      } else {
+        cells.push(<TableCell key={i} sx={{ border: 1 }} />);
+      }
+    }
+    return cells;
+  };
+
   return (
     <div id="calendarOverview">
       <PersistentDrawerLeft header='Kalender Übersicht' />
@@ -45,19 +80,10 @@ function Calendar() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.stunde}
-                  sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
-                >
-                  <TableCell component="th" scope="row" sx={{ border: 1 }}>
-                    {row.stunde}
-                  </TableCell>
-                  <TableCell align="right" sx={{ border: 1 }}>{row.montag}</TableCell>
-                  <TableCell align="right" sx={{ border: 1 }}>{row.dienstag}</TableCell>
-                  <TableCell align="right" sx={{ border: 1 }}>{row.mittwoch}</TableCell>
-                  <TableCell align="right" sx={{ border: 1 }}>{row.donnerstag}</TableCell>
-                  <TableCell align="right" sx={{ border: 1 }}>{row.freitag}</TableCell>
+              {calendarEintrag.map((calendarEintrag_einzel) => (
+                <TableRow key={calendarEintrag_einzel.id}>
+                  <TableCell sx={{ border: 1 }}>{calendarEintrag_einzel.schulstunde}</TableCell>
+                  {renderTableCells(calendarEintrag_einzel)}
                 </TableRow>
               ))}
             </TableBody>
@@ -65,9 +91,7 @@ function Calendar() {
         </TableContainer>
       </div>
       <Divider orientation="vertical" flexItem />
-      <div>
-
-      </div>
+      <div></div>
     </div>
   );
 }
