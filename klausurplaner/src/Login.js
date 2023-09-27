@@ -45,6 +45,9 @@ const login = function(event) {
     const email = document.getElementById("input-email").value;
     const password = document.getElementById("input-password").value
 
+    //Until the login works, keep this
+    window.location.href='/calendar';
+
     fetch("${backendURL}/kp/login", {
         method: "POST",
         headers: {
