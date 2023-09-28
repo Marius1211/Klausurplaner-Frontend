@@ -8,7 +8,13 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-
+/**
+ * Erstelt eine einfach Loginseite mit zwei Eingabefeldern und einem Button zum
+ * einloggen.
+ * 
+ * @author Patrick Wagner
+ * @returns Komponente der Login Seite
+ */
 function Login() {
     return (
         <div>

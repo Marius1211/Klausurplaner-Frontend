@@ -12,6 +12,12 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
 
+/**
+ * 
+ * 
+ * @param props 
+ * @returns 
+ */
 function ComingExams(props) {
 
   //Url von den Daten aus dem Frontend

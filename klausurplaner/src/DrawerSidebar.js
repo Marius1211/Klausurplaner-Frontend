@@ -23,7 +23,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import SchoolIcon from '@mui/icons-material/School';
 
-const drawerWidth = 240;
+const drawerWidth = 240; //Breite des ausgeklappen Drawer
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -60,21 +60,29 @@ const AppBar = styled(MuiAppBar, {
         }),
     }),
 }));
-
+//Legt den Style der Menüleiste fest
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
 }));
 
+/**
+ * 
+ * Funktion, welche eine Sidebar erzeugt. Diese dient zur Navigation und lässt sich
+ * ein und ausklappen.
+ * 
+ * @author Patrick Wagner
+ * @param header 
+ * @returns Komponente SideBar
+ */
 export default function PersistentDrawerLeft(header) {
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);//Speichert ob Drawer geöffnet wurde oder nicht
 
-    const handleDrawerOpen = () => {
+    const handleDrawerOpen = () => {//Kümmert sich darum den Drawer zu öffnen
         setOpen(true);
     };
 
