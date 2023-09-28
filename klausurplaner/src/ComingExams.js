@@ -13,14 +13,16 @@ import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
 
 /**
+ * Funktion, welche eine Komponente erzeugt die Daten aus dem Back End abfragt und 
+ * in einer Tabellenform auf dem Bildschirm ausgibt.
  * 
- * 
+ * @author Patrick Wagner
  * @param props 
- * @returns 
+ * @returns Komponente die in Tabelenform aten aus dem Back End anzeigt.
  */
 function ComingExams(props) {
 
-  //Url von den Daten aus dem Frontend
+  //Url von den Daten aus dem Backend
 const EXAMS_REST_API_URL = 'http://localhost:8080/exams';
 //useState Hook für ExamsArray
 const [exams, setExams] = useState([]);

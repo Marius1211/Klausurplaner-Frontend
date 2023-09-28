@@ -18,10 +18,19 @@ import PersistentDrawerLeft from './DrawerSidebar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+/**
+ * Funktion, welche eine Komponente erzeugt die Daten aus dem Backend
+ * in Form eines Kalenders anzeigen.
+ * 
+ * @author Patrick Wagner
+ * @returns 
+ */
 function Calendar() {
+  //Url von den Daten aus dem Backend
   const EXAMS_REST_API_URL = 'http://localhost:8080/calendar';
+  //useState Hook für calendarEintragArray
   const [calendarEintrag, setCalendarEintrag] = useState([]);
-
+  //Zieht sich die Daten von der URL und speicher diese in den aktuellen State
   const getCalendarEintrag = () => {
     axios.get(EXAMS_REST_API_URL)
       .then(response => {
@@ -48,10 +57,10 @@ function Calendar() {
       case 'Freitag':
         return 5;
       default:
-        return 1; // Default to Montag if day is not recognized
+        return 1;
     }
   };
-
+  //Abhängig davon, welcher Tag angegeben ist wird die Klausur dort eingetragen
   const renderTableCells = (entry) => {
     const dayColumn = getDayColumn(entry.tag);
     const cells = [];

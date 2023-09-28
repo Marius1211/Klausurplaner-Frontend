@@ -7,6 +7,13 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './AddKlausur.css';
 import DrawerSidebar from './DrawerSidebar';
 
+/**
+ * Funktion, welche eine Komponente erzeugt, welche aus mehreren Eingabefeldern besteht 
+ * und es dem Benutzer ermöglicht, eine Klausur hinzuzufügen oder zu bearbeiten.
+ * 
+ * @author Kevin Mittag
+ * @returns Komponente, welche es dem Benutzer ermöglicht eingaben zu tätigen.
+ */
 function AddKlausur() {
     return (
         <div id="add-menue">

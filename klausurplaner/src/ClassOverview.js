@@ -12,10 +12,18 @@ import PersistentDrawerLeft from './DrawerSidebar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+/**
+ * Funktion, welche eine Tabelle erzeugt und in dieser Schulklassen angezeigt werden.
+ * 
+ * @author Patrick Wagner, Kevin Mittag
+ * @returns Komponente die Daten aus dem Backend in Tabellenform ausgibt 
+ */
 function ClassOverview() {
-        const EXAMS_REST_API_URL = 'http://localhost:8080/klasse';
+    //Url von den Daten aus dem Backend
+    const EXAMS_REST_API_URL = 'http://localhost:8080/klasse';
+    //useState Hook für KlassenArray
     const [klassen, setKlassen] = useState([]);
-
+    //Zieht sich die Daten von der URL und speicher diese in den aktuellen State
     const getKlassen = () => {
         axios.get(EXAMS_REST_API_URL)
             .then(response => {
